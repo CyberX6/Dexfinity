@@ -1,31 +1,21 @@
-import { ProgressSteps } from '../progress-steps'
-import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { useNavigate } from 'react-router-dom'
+import { ProgressSteps } from '../progress-steps'
 import { useStateMachine } from 'little-state-machine'
 import updateAction from '../updateAction'
-import * as yup from 'yup'
-
-const schema = yup
-  .object({
-    service: yup.array()
-  })
-  .required()
 
 export const Step2 = () => {
+  const { register, handleSubmit, watch, setValue } = useForm()
+  const { actions, state } = useStateMachine({ updateAction })
+
+  useEffect(() => {
+    setValue('services', state.data?.services)
+  }, [setValue, state.data?.services])
+
   let navigate = useNavigate()
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors }
-  } = useForm({
-    resolver: yupResolver(schema)
-  })
-
-  const watchService = watch('service')
-  const { actions } = useStateMachine({ updateAction })
+  const watchService = watch('services')
 
   const onSubmit = data => {
     actions.updateAction(data)
@@ -43,6 +33,24 @@ export const Step2 = () => {
     'Provízna spolupráca'
   ]
 
+  const servicesList = servicesArray.map((service, i) => (
+    <label
+      className={`checkbox ${
+        watchService && watchService.indexOf(service) > -1 ? 'checked' : ''
+      }`}
+      key={service}
+    >
+      <input
+        type="checkbox"
+        name={`services.${i}`}
+        id={service}
+        value={service}
+        {...register('services')}
+      />
+      <label htmlFor={service}>{service}</label>
+    </label>
+  ))
+
   return (
     <>
       <ProgressSteps stepNum={2} />
@@ -51,30 +59,14 @@ export const Step2 = () => {
           <legend>
             Vyberte, o čo máte záujem a nebojte sa označiť viac možností
           </legend>
-          <div className="services-list">
-            {servicesArray.map(service => (
-              <div
-                className={`checkbox ${
-                  watchService && watchService.indexOf(service) > -1
-                    ? 'checked'
-                    : ''
-                }`}
-                key={service}
-              >
-                <input
-                  type="checkbox"
-                  name="service[]"
-                  id={service}
-                  value={service}
-                  {...register('service')}
-                />
-                <label htmlFor={service}>{service}</label>
-              </div>
-            ))}
-          </div>
+          <div className="services-list">{servicesList}</div>
         </fieldset>
         <div className="button-container">
-          <button onClick={() => navigate('/step1')} className="secondary">
+          <button
+            type="button"
+            onClick={() => navigate('/step1')}
+            className="secondary"
+          >
             Späť
           </button>
           <button type="submit" className="primary">

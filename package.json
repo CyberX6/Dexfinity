@@ -1,5 +1,6 @@
 {
   "name": "dexfinity",
+  "homnepage": "https://cyberx6.github.io/dexxx/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,12 +8,14 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "gh-pages": "^3.2.3",
     "little-state-machine": "^4.2.0",
     "node-sass": "^4.0.1",
     "prettier": "^2.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.21.0",
+    "react-phone-input-international": "^2.15.6",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1",
@@ -20,6 +23,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

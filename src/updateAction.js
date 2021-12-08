@@ -7,3 +7,7 @@ export default function updateAction(state, payload) {
     }
   }
 }
+
+export function clearAction() {
+  return {}
+}

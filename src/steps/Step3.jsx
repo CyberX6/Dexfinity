@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useStateMachine } from 'little-state-machine'
-import updateAction from '../updateAction'
+import updateAction, { clearAction } from '../updateAction'
 
 const schema = yup
   .object({
@@ -23,11 +23,15 @@ export const Step3 = () => {
     resolver: yupResolver(schema)
   })
 
-  const { actions, state } = useStateMachine({ updateAction })
+  const { actions, state } = useStateMachine({
+    clearAction,
+    updateAction
+  })
 
   const onSubmit = data => {
     actions.updateAction(data)
     alert(JSON.stringify(state, null, 2))
+    actions.clearAction()
   }
 
   return (
@@ -39,7 +43,7 @@ export const Step3 = () => {
           <textarea
             name="description"
             {...register('description')}
-            defaultValue={state.data.description}
+            defaultValue={state.data?.description}
             id="description"
             cols="30"
             rows="8"

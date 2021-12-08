@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { StateMachineProvider, createStore } from 'little-state-machine'
 import { Step1 } from './steps/Step1'
 import { Step2 } from './steps/Step2'

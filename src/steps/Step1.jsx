@@ -1,32 +1,41 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import PhoneInput from 'react-phone-input-international'
 import { ProgressSteps } from '../progress-steps'
 import { useForm } from 'react-hook-form'
 import { useStateMachine } from 'little-state-machine'
 import updateAction from '../updateAction'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { useEffect } from 'react'
 
 const schema = yup
   .object({
     firstName: yup.string().required(),
     email: yup.string().email().required(),
-    website: yup.string().url().required(),
-    phone: yup.number().required(),
+    website: yup.string().required(),
+    phone: yup.string().required().min(7),
     budget: yup.number().required()
   })
   .required()
 
 export const Step1 = () => {
-  let navigate = useNavigate()
-
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    setValue
   } = useForm({
     resolver: yupResolver(schema)
   })
+
   const { actions, state } = useStateMachine({ updateAction })
+
+  useEffect(() => {
+    setValue('phone', state.data?.phone)
+  }, [setValue, state.data?.phone])
+
+  let navigate = useNavigate()
+
   const onSubmit = data => {
     actions.updateAction(data)
     navigate('/step2')
@@ -44,7 +53,7 @@ export const Step1 = () => {
             type="text"
             id="name"
             {...register('firstName')}
-            defaultValue={state.data.firstName}
+            defaultValue={state.data?.firstName}
             placeholder="John Doe"
           />
           {errors.firstName === 'required' && (
@@ -57,7 +66,7 @@ export const Step1 = () => {
             type="email"
             id="email"
             {...register('email')}
-            defaultValue={state.data.email}
+            defaultValue={state.data?.email}
             placeholder="your.adress@mail.com"
           />
           {errors.email?.type === 'required' && (
@@ -66,11 +75,18 @@ export const Step1 = () => {
         </div>
         <div className={`input-group required ${errors.phone ? 'error' : ''}`}>
           <label htmlFor="phone">Telefónne číslo</label>
-          <input
+          <PhoneInput
+            country="sk"
             type="tel"
+            className="phone-input"
             id="phone"
+            name="phone"
             {...register('phone')}
-            defaultValue={state.data.phone}
+            defaultValue={state.data?.phone}
+            onChange={phone =>
+              setValue('phone', phone, { shouldValidate: true })
+            }
+            value={state.data?.phone}
             placeholder="+421 123 345 678"
           />
           {errors.phone?.type === 'required' && (
@@ -85,7 +101,7 @@ export const Step1 = () => {
             type="text"
             id="website"
             {...register('website')}
-            defaultValue={state.data.website}
+            defaultValue={state.data?.website}
             placeholder="https://yourwebsite.com"
           />
           {errors.website?.type === 'required' && (
@@ -96,14 +112,14 @@ export const Step1 = () => {
           <label htmlFor="budget">Orientačný mesačný rozpočet</label>
           <select
             {...register('budget')}
-            defaultValue={state.data.budget}
+            defaultValue={state.data?.budget}
             name="budget"
             id="budget"
           >
             <option value="">Select an option</option>
-            <option value="500">500$</option>
-            <option value="1000">1000$</option>
-            <option value="1500">1500$</option>
+            <option value="500">500€</option>
+            <option value="1000">1000€</option>
+            <option value="1500">1500€</option>
           </select>
           {errors.budget?.type === 'required' && (
             <span className="error-message">This field is required</span>

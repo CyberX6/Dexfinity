@@ -196,6 +196,7 @@ h2 {
   }
 }
 button {
+  font-family: 'Poppins', sans-serif;
   font-size: 1.8rem;
   font-weight: 600;
   background: #0065f7;
@@ -284,7 +285,7 @@ legend {
 
     label {
       color: #05024e;
-      font-size: 1rem;
+      font-size: 1.3rem;
       line-height: 1.5rem;
       font-weight: 400;
       cursor: pointer;
@@ -334,6 +335,7 @@ legend {
     border-radius: 4px;
     padding: 1.4rem 2rem;
     border: none;
+    max-width: 100%;
 
     &::placeholder {
       color: #bcbcbc;
@@ -392,3 +394,5 @@ legend {
     grid-column-end: 2;
   }
 }
+
+@import 'phoneInput';
