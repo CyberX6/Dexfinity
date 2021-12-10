@@ -30,7 +30,7 @@ export const Step3 = () => {
 
   const onSubmit = data => {
     actions.updateAction(data)
-    alert(JSON.stringify(state, null, 2))
+    navigate('/success')
     actions.clearAction()
   }
 

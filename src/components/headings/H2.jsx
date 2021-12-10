@@ -1,10 +1,6 @@
 import React from 'react'
+import ReactHtmlParser from 'react-html-parser'
 
-export const H2 = () => {
-  return (
-    <h2>
-      Vykročte smerom k zahraničnej expanzii vášho biznisu.{' '}
-      <strong>Na účet Dexfinity a bez záväzkov.</strong>
-    </h2>
-  )
+export const H2 = ({ text }) => {
+  return <h2>{ReactHtmlParser(text)}</h2>
 }
