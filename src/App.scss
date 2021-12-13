@@ -421,6 +421,11 @@ legend {
     grid-column-start: 1;
     grid-column-end: 2;
   }
+
+  .success {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 @import 'phoneInput';
