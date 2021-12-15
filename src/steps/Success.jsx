@@ -22,7 +22,7 @@ export const Success = () => {
 
   return (
     <div className="success">
-      <Lottie options={defaultOptions} height={200} width={252} />
+      <Lottie options={defaultOptions} height={150} width={150} />
       <H1 text="Úspešne odoslané!" />
       <H2 text="Už len moment a náš špecialista sa vám venuje. " />
       <button onClick={handleClick} className="secondary">
