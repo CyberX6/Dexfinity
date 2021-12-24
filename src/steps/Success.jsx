@@ -2,7 +2,6 @@ import Lottie from 'react-lottie'
 import animationData from '../lotties/success.json'
 import { H1 } from '../components/headings/H1'
 import { H2 } from '../components/headings/H2'
-import { useNavigate } from 'react-router-dom'
 
 const defaultOptions = {
   loop: false,
@@ -13,11 +12,9 @@ const defaultOptions = {
   }
 }
 
-export const Success = () => {
-  const navigate = useNavigate()
-
+export const Success = ({ onNext }) => {
   const handleClick = () => {
-    navigate('/')
+    onNext()
   }
 
   return (

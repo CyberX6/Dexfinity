@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import PhoneInput from 'react-phone-input-international'
 import { ProgressSteps } from '../progress-steps'
 import { useForm } from 'react-hook-form'
@@ -18,7 +17,7 @@ const schema = yup
   })
   .required()
 
-export const Step1 = () => {
+export const Step1 = ({ onNext }) => {
   const {
     register,
     handleSubmit,
@@ -34,11 +33,9 @@ export const Step1 = () => {
     setValue('phone', state.data?.phone)
   }, [setValue, state.data?.phone])
 
-  let navigate = useNavigate()
-
   const onSubmit = data => {
     actions.updateAction(data)
-    navigate('/step2')
+    onNext()
   }
 
   return (

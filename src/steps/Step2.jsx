@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 import { ProgressSteps } from '../progress-steps'
 import { useStateMachine } from 'little-state-machine'
 import updateAction from '../updateAction'
 
-export const Step2 = () => {
+export const Step2 = ({ onBack, onNext }) => {
   const { register, handleSubmit, watch, setValue } = useForm()
   const { actions, state } = useStateMachine({ updateAction })
 
@@ -13,13 +12,11 @@ export const Step2 = () => {
     setValue('services', state.data?.services)
   }, [setValue, state.data?.services])
 
-  let navigate = useNavigate()
-
   const watchService = watch('services')
 
   const onSubmit = data => {
     actions.updateAction(data)
-    navigate('/step3')
+    onNext()
   }
 
   const servicesArray = [
@@ -62,11 +59,7 @@ export const Step2 = () => {
           <div className="services-list">{servicesList}</div>
         </fieldset>
         <div className="button-container">
-          <button
-            type="button"
-            onClick={() => navigate('/step1')}
-            className="secondary"
-          >
+          <button type="button" onClick={() => onBack()} className="secondary">
             Späť
           </button>
           <button type="submit" className="primary">

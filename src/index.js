@@ -1,6 +1,6 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { StateMachineProvider, createStore } from 'little-state-machine'
 import { Step1 } from './steps/Step1'
 import { Step2 } from './steps/Step2'
@@ -15,25 +15,48 @@ createStore({
 })
 
 function App() {
+  const [step, setStep] = useState(1)
+
+  const handleNext = () => {
+    setStep(step + 1)
+  }
+
+  const handleBack = () => {
+    setStep(step - 1)
+  }
+
+  const handleSubmit = values => {
+    axios
+      .post(
+        'https://sheet.best/api/sheets/288d9f33-2104-4b40-8e56-9f8705e64eb4',
+        {
+          ...values.data,
+          name: values.data.firstName,
+          services: values.data.services.join(', ')
+        }
+      )
+      .then(() => {
+        setStep(4)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   return (
-    <BrowserRouter>
-      <StateMachineProvider>
-        <div className="container">
-          <H1 text="Pripravení na rast?" />
-          <H2
-            text="Vykročte smerom k zahraničnej expanzii vášho biznisu.
+    <StateMachineProvider>
+      <div className="container">
+        <H1 text="Pripravení na rast?" />
+        <H2
+          text="Vykročte smerom k zahraničnej expanzii vášho biznisu.
       <strong>Na účet Dexfinity a bez záväzkov.</strong>"
-          />
-          <Routes>
-            <Route exact path="/" element={<Step1 />} />
-            <Route path="/step1" element={<Step1 />} />
-            <Route path="/step2" element={<Step2 />} />
-            <Route path="/step3" element={<Step3 />} />
-            <Route path="/success" element={<Success />} />
-          </Routes>
-        </div>
-      </StateMachineProvider>
-    </BrowserRouter>
+        />
+        {step === 1 && <Step1 onNext={handleNext} />}
+        {step === 2 && <Step2 onBack={handleBack} onNext={handleNext} />}
+        {step === 3 && <Step3 onBack={handleBack} onNext={handleSubmit} />}
+        {step === 4 && <Success onNext={() => setStep(1)} />}
+      </div>
+    </StateMachineProvider>
   )
 }
 

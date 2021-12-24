@@ -1,5 +1,4 @@
 import { ProgressSteps } from '../progress-steps'
-import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -12,9 +11,7 @@ const schema = yup
   })
   .required()
 
-export const Step3 = () => {
-  let navigate = useNavigate()
-
+export const Step3 = ({ onBack, onNext }) => {
   const {
     register,
     handleSubmit,
@@ -30,7 +27,7 @@ export const Step3 = () => {
 
   const onSubmit = data => {
     actions.updateAction(data)
-    navigate('/success')
+    onNext(state)
     actions.clearAction()
   }
 
@@ -54,10 +51,15 @@ export const Step3 = () => {
           )}
         </div>
         <div className="file-input">
-          <input type="file" placeholder="Nie je vybratý žiadný súbor" />
+          <input
+            type="file"
+            {...register('file')}
+            name="file"
+            placeholder="Nie je vybratý žiadný súbor"
+          />
         </div>
         <div className="button-container">
-          <button onClick={() => navigate('/step2')} className="secondary">
+          <button onClick={() => onBack()} className="secondary">
             Späť
           </button>
           <button className="primary">Ďalej</button>
