@@ -13,7 +13,7 @@ const schema = yup
     email: yup.string().email().required(),
     website: yup.string().required(),
     phone: yup.string().required().min(7),
-    budget: yup.number().required()
+    budget: yup.string().required()
   })
   .required()
 
@@ -43,6 +43,7 @@ export const Step1 = ({ onNext }) => {
       <ProgressSteps stepNum={1} />
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div
+          style={{ gridColumn: '1 / -1' }}
           className={`input-group required ${errors.firstName ? 'error' : ''}`}
         >
           <label htmlFor="name">Meno a priezvisko</label>
@@ -114,19 +115,18 @@ export const Step1 = ({ onNext }) => {
             id="budget"
           >
             <option value="">Select an option</option>
-            <option value="500">500€</option>
-            <option value="1000">1000€</option>
-            <option value="1500">1500€</option>
+            <option value="<500">up to 500€</option>
+            <option value="500-1000">500€ - 1000€</option>
+            <option value="1000-1500">1000€ - 1500€</option>
+            <option value="1500-2000">1500€ - 2000€</option>
+            <option value="2000<">over 2000€</option>
           </select>
           {errors.budget?.type === 'required' && (
             <span className="error-message">This field is required</span>
           )}
         </div>
-        <div className="button-container">
-          <button style={{ visibility: 'hidden' }} className="secondary">
-            Späť
-          </button>
-          <button type="submit" className="primary">
+        <div className="button-container first-step">
+          <button type="submit" className="custom-button primary next-button">
             Ďalej
           </button>
         </div>

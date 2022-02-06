@@ -38,6 +38,7 @@ export const Step3 = ({ onBack, onNext }) => {
         <div className="textarea required error">
           <label htmlFor="description">Vaša správa a doplňujúce podklady</label>
           <textarea
+            className="custom-textarea"
             name="description"
             {...register('description')}
             defaultValue={state.data?.description}
@@ -59,10 +60,10 @@ export const Step3 = ({ onBack, onNext }) => {
           />
         </div>
         <div className="button-container">
-          <button onClick={() => onBack()} className="secondary">
+          <button onClick={() => onBack()} className="custom-button secondary">
             Späť
           </button>
-          <button className="primary">Ďalej</button>
+          <button className="custom-button primary">Odoslať</button>
         </div>
       </form>
     </>

@@ -52,17 +52,21 @@ export const Step2 = ({ onBack, onNext }) => {
     <>
       <ProgressSteps stepNum={2} />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset>
-          <legend>
+        <fieldset className="custom-fieldset">
+          <legend className="custom-legend">
             Vyberte, o čo máte záujem a nebojte sa označiť viac možností
           </legend>
           <div className="services-list">{servicesList}</div>
         </fieldset>
         <div className="button-container">
-          <button type="button" onClick={() => onBack()} className="secondary">
+          <button
+            type="button"
+            onClick={() => onBack()}
+            className="custom-button secondary"
+          >
             Späť
           </button>
-          <button type="submit" className="primary">
+          <button type="submit" className="custom-button primary">
             Ďalej
           </button>
         </div>

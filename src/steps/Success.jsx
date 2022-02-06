@@ -1,3 +1,4 @@
+import React from 'react'
 import Lottie from 'react-lottie'
 import animationData from '../lotties/success.json'
 import { H1 } from '../components/headings/H1'
@@ -20,9 +21,11 @@ export const Success = ({ onNext }) => {
   return (
     <div className="success">
       <Lottie options={defaultOptions} height={150} width={150} />
-      <H1 text="Úspešne odoslané!" />
+      <h1 style={{ fontSize: '5rem' }} className="custom-h1-sm">
+        Úspešne odoslané!
+      </h1>
       <H2 text="Už len moment a náš špecialista sa vám venuje. " />
-      <button onClick={handleClick} className="secondary">
+      <button onClick={handleClick} className="custom-button secondary">
         Späť na formulár
       </button>
     </div>
