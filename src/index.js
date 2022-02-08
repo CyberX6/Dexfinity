@@ -69,25 +69,25 @@ function App() {
       )
       .then(() => {
         setStep(4)
-        emailjs.send(
-          'service_g0ui1jk',
-          'template_vbv7cki',
-          { to_email: values.data.email },
-          'user_w85TR2DC5ffYGaExLFUCH'
-        )
-        emailjs.send(
-          'service_g0ui1jk',
-          'template_eeajazh',
-          {
-            client_name: values.data.firstName,
-            client_email: values.data.email,
-            client_phone: values.data.phone,
-            website: values.data.website,
-            url_field: window.location.href,
-            created_time: getCurrentDate()
-          },
-          'user_w85TR2DC5ffYGaExLFUCH'
-        )
+        // emailjs.send(
+        //   'service_g0ui1jk',
+        //   'template_vbv7cki',
+        //   { to_email: values.data.email },
+        //   'user_w85TR2DC5ffYGaExLFUCH'
+        // )
+        // emailjs.send(
+        //   'service_g0ui1jk',
+        //   'template_eeajazh',
+        //   {
+        //     client_name: values.data.firstName,
+        //     client_email: values.data.email,
+        //     client_phone: values.data.phone,
+        //     website: values.data.website,
+        //     url_field: window.location.href,
+        //     created_time: getCurrentDate()
+        //   },
+        //   'user_w85TR2DC5ffYGaExLFUCH'
+        // )
       })
       .catch(err => {
         console.log(err)

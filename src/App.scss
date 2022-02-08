@@ -32,13 +32,13 @@ body {
   color: #05024e !important;
   font-weight: 600 !important;
   line-height: 1.2 !important;
-  font-size: 5rem !important;
+  font-size: 2.8rem !important;
 }
 
 .custom-h2 {
-  color: #05024e !important;
+  color: rgb(5, 2, 78) !important;
   font-weight: 400;
-  font-size: 1.4rem;
+  font-size: 1.65rem;
   margin-bottom: 5.6rem;
 }
 
@@ -46,7 +46,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4.8rem;
+  margin-bottom: 2.8rem;
 
   .step {
     display: flex;
@@ -225,7 +225,7 @@ body {
     border-radius: 5px;
     font-weight: 500 !important;
     color: #8e8e8e !important;
-    background: #ffffff !important;
+    background: #f8f8f8 !important;
 
     &:hover {
       background: #0065f7 !important;
@@ -243,7 +243,7 @@ body {
 
 .custom-legend {
   margin-left: -1rem;
-  color: #d3d3d3;
+  color: rgb(5, 2, 78);
   font-size: 1.4rem;
   line-height: 1.8rem;
   font-weight: 500;
@@ -271,7 +271,7 @@ body {
 
     &.checked {
       background: rgba(84, 152, 250, 0.21);
-      border: 0.409091px solid #0065f7;
+      border: 0.409091px solid rgb(225, 225, 225);
     }
 
     input {
@@ -428,6 +428,9 @@ body {
   .form {
     display: grid;
     grid-template-columns: 1fr;
+  }
+  .custom-h1-sm {
+    font-size: 3.8rem !important;
   }
   .button-container {
     grid-column-start: 1;

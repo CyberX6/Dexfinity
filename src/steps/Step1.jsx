@@ -115,11 +115,11 @@ export const Step1 = ({ onNext }) => {
             id="budget"
           >
             <option value="">Select an option</option>
-            <option value="<500">up to 500€</option>
+            <option value="<500">do 500 €</option>
             <option value="500-1000">500€ - 1000€</option>
             <option value="1000-1500">1000€ - 1500€</option>
             <option value="1500-2000">1500€ - 2000€</option>
-            <option value="2000<">over 2000€</option>
+            <option value="2000<">viac ako 2000 €</option>
           </select>
           {errors.budget?.type === 'required' && (
             <span className="error-message">This field is required</span>

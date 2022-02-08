@@ -45,7 +45,7 @@ export const Step3 = ({ onBack, onNext }) => {
             id="description"
             cols="30"
             rows="8"
-            placeholder="Hello, I have a wonderful bizňis for u."
+            placeholder="Dalsie detaily o vasom svetovom e-commerce projekte"
           />
           {errors.description && (
             <span className="error-message">{errors.description.message}</span>
