@@ -32,7 +32,7 @@ body {
   color: #05024e !important;
   font-weight: 600 !important;
   line-height: 1.2 !important;
-  font-size: 2.8rem !important;
+  font-size: 4.8rem !important;
 }
 
 .custom-h2 {
@@ -265,13 +265,13 @@ body {
     padding: 1.5rem;
     gap: 1.6rem;
     background: rgba(239, 236, 236, 0.27);
-    border: 0.409091px solid #eaeaea;
+    border: 0.409091px solid rgb(225, 225, 225);
     cursor: pointer;
     border-radius: 0.5rem;
 
     &.checked {
       background: rgba(84, 152, 250, 0.21);
-      border: 0.409091px solid rgb(225, 225, 225);
+      border: 0.409091px solid #0065f7;
     }
 
     input {
@@ -295,7 +295,7 @@ body {
       color: #05024e;
       font-size: 1.3rem;
       line-height: 1.5rem;
-      font-weight: 400;
+      font-weight: 500 !important;
       cursor: pointer;
     }
   }
