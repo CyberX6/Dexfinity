@@ -55,7 +55,7 @@ export const Step1 = ({ onNext }) => {
             placeholder="John Doe"
           />
           {errors.firstName === 'required' && (
-            <span className="error-message">This field is required</span>
+            <span className="error-message">Toto pole je povinne</span>
           )}
         </div>
         <div className={`input-group required ${errors.email ? 'error' : ''}`}>
@@ -68,7 +68,7 @@ export const Step1 = ({ onNext }) => {
             placeholder="your.adress@mail.com"
           />
           {errors.email?.type === 'required' && (
-            <span className="error-message">This field is required</span>
+            <span className="error-message">Toto pole je povinne</span>
           )}
         </div>
         <div className={`input-group required ${errors.phone ? 'error' : ''}`}>
@@ -88,7 +88,7 @@ export const Step1 = ({ onNext }) => {
             placeholder="+421 123 345 678"
           />
           {errors.phone?.type === 'required' && (
-            <span className="error-message">This field is required</span>
+            <span className="error-message">Toto pole je povinne</span>
           )}
         </div>
         <div
@@ -103,7 +103,7 @@ export const Step1 = ({ onNext }) => {
             placeholder="https://yourwebsite.com"
           />
           {errors.website?.type === 'required' && (
-            <span className="error-message">This field is required</span>
+            <span className="error-message">Toto pole je povinne</span>
           )}
         </div>
         <div className={`input-group required ${errors.budget ? 'error' : ''}`}>
@@ -114,7 +114,7 @@ export const Step1 = ({ onNext }) => {
             name="budget"
             id="budget"
           >
-            <option value="">Select an option</option>
+            <option value="">Vyberte si možnosť</option>
             <option value="<500">do 500 €</option>
             <option value="500-1000">500€ - 1000€</option>
             <option value="1000-1500">1000€ - 1500€</option>
@@ -122,7 +122,7 @@ export const Step1 = ({ onNext }) => {
             <option value="2000<">viac ako 2000 €</option>
           </select>
           {errors.budget?.type === 'required' && (
-            <span className="error-message">This field is required</span>
+            <span className="error-message">Toto pole je povinne</span>
           )}
         </div>
         <div className="button-container first-step">

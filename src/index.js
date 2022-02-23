@@ -50,7 +50,7 @@ function App() {
     setStep(4)
     axios
       .post(
-        'https://v1.nocodeapi.com/cyberx6/google_sheets/eoxmLzUPBeYuYtcZ/addRows?tabId=Leads All Raw Data',
+        'https://v1.nocodeapi.com/cyberx6/google_sheets/uMqvJhdbHyvFiGXi/addRows?tabId=Raw Leads',
         [
           {
             'E-mail': values.data.email,

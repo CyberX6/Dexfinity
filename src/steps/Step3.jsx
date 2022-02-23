@@ -7,7 +7,7 @@ import updateAction, { clearAction } from '../updateAction'
 
 const schema = yup
   .object({
-    description: yup.string().required('Description is required')
+    description: yup.string()
   })
   .required()
 
@@ -35,7 +35,7 @@ export const Step3 = ({ onBack, onNext }) => {
     <>
       <ProgressSteps stepNum={3} />
       <form onSubmit={handleSubmit(onSubmit)} className="form-container">
-        <div className="textarea required error">
+        <div className="textarea error">
           <label htmlFor="description">Vaša správa a doplňujúce podklady</label>
           <textarea
             className="custom-textarea"
@@ -45,7 +45,7 @@ export const Step3 = ({ onBack, onNext }) => {
             id="description"
             cols="30"
             rows="8"
-            placeholder="Dalsie detaily o vasom svetovom e-commerce projekte"
+            placeholder="Ďalšie detaily o vašom svetovom e-commerce projekte"
           />
           {errors.description && (
             <span className="error-message">{errors.description.message}</span>
