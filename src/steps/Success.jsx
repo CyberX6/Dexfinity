@@ -21,7 +21,10 @@ export const Success = ({ onNext }) => {
   return (
     <div className="success">
       <Lottie options={defaultOptions} height={150} width={150} />
-      <h1 style={{ fontSize: '5rem' }} className="custom-h1-sm">
+      <h1
+        style={{ fontSize: '5rem', padding: '0 5px' }}
+        className="custom-h1-sm"
+      >
         Úspešne odoslané!
       </h1>
       <H2 text="Už len moment a náš špecialista sa vám venuje. " />
