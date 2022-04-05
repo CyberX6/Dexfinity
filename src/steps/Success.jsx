@@ -1,7 +1,6 @@
 import React from 'react'
 import Lottie from 'react-lottie'
 import animationData from '../lotties/success.json'
-import { H1 } from '../components/headings/H1'
 import { H2 } from '../components/headings/H2'
 
 const defaultOptions = {
@@ -28,7 +27,10 @@ export const Success = ({ onNext }) => {
         Úspešne odoslané!
       </h1>
       <H2 text="Už len moment a náš špecialista sa vám venuje. " />
-      <button onClick={handleClick} className="custom-button secondary">
+      <button
+        onClick={handleClick}
+        className="custom-button success-btn secondary"
+      >
         Späť na formulár
       </button>
     </div>

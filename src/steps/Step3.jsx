@@ -1,3 +1,6 @@
+import emailjs from '@emailjs/browser'
+import { useRef } from 'react'
+import { getCurrentDate } from '../index'
 import { ProgressSteps } from '../progress-steps'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
@@ -25,16 +28,43 @@ export const Step3 = ({ onBack, onNext }) => {
     updateAction
   })
 
+  const {
+    data: { firstName, email, phone, website }
+  } = state
+
+  const formRef = useRef()
   const onSubmit = data => {
-    actions.updateAction(data)
-    onNext(state)
-    actions.clearAction()
+    emailjs
+      .sendForm(
+        'service_9vxcxnt',
+        'template_adwoj6s',
+        formRef.current,
+        'user_szolbZ1s6HtszgBTaUZYs'
+      )
+      .then(
+        r => {
+          console.log('SUCCESS!', r.status, r.text)
+        },
+        err => {
+          console.log('FAILED...', err)
+        }
+      )
+      .finally(() => {
+        actions.updateAction(data)
+        onNext(state)
+        actions.clearAction()
+      })
   }
 
   return (
     <>
       <ProgressSteps stepNum={3} />
-      <form onSubmit={handleSubmit(onSubmit)} className="form-container">
+      <form
+        ref={formRef}
+        encType="multipart/form-data"
+        onSubmit={handleSubmit(onSubmit)}
+        className="form-container"
+      >
         <div className="textarea error">
           <label htmlFor="description">Vaša správa a doplňujúce podklady</label>
           <textarea
@@ -65,6 +95,12 @@ export const Step3 = ({ onBack, onNext }) => {
           </button>
           <button className="custom-button primary">Odoslať</button>
         </div>
+        <input type="hidden" name="client_name" value={firstName} />
+        <input type="hidden" name="client_email" value={email} />
+        <input type="hidden" name="client_phone" value={phone} />
+        <input type="hidden" name="website" value={website} />
+        <input type="hidden" name="url_field" value={window.location.href} />
+        <input type="hidden" name="created_time" value={getCurrentDate()} />
       </form>
     </>
   )
