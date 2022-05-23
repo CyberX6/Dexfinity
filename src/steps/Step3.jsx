@@ -1,5 +1,6 @@
 import emailjs from '@emailjs/browser'
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { getCurrentDate } from '../index'
 import { ProgressSteps } from '../progress-steps'
 import * as yup from 'yup'
@@ -15,6 +16,7 @@ const schema = yup
   .required()
 
 export const Step3 = ({ onBack, onNext }) => {
+  const { t } = useTranslation()
   const {
     register,
     handleSubmit,
@@ -66,7 +68,7 @@ export const Step3 = ({ onBack, onNext }) => {
         className="form-container"
       >
         <div className="textarea error">
-          <label htmlFor="description">Vaša správa a doplňujúce podklady</label>
+          <label htmlFor="description">{t('additionalDocs')}</label>
           <textarea
             className="custom-textarea"
             name="description"
@@ -75,7 +77,7 @@ export const Step3 = ({ onBack, onNext }) => {
             id="description"
             cols="30"
             rows="8"
-            placeholder="Ďalšie detaily o vašom svetovom e-commerce projekte"
+            placeholder={t('description')}
           />
           {errors.description && (
             <span className="error-message">{errors.description.message}</span>
@@ -86,14 +88,14 @@ export const Step3 = ({ onBack, onNext }) => {
             type="file"
             {...register('file')}
             name="file"
-            placeholder="Nie je vybratý žiadný súbor"
+            placeholder={t('noFileSelected')}
           />
         </div>
         <div className="button-container">
           <button onClick={() => onBack()} className="custom-button secondary">
-            Späť
+            {t('back')}
           </button>
-          <button className="custom-button primary">Odoslať</button>
+          <button className="custom-button primary">{t('submit')}</button>
         </div>
         <input type="hidden" name="client_name" value={firstName} />
         <input type="hidden" name="client_email" value={email} />

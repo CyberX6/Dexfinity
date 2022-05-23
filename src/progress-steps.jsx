@@ -1,10 +1,12 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const ProgressSteps = ({ stepNum }) => {
+  const { t } = useTranslation()
   const steps = {
-    1: 'Povedzte nám o vás',
-    2: 'S čím pomôžeme?',
-    3: 'Dodatočné informácie'
+    1: t('aboutYou'),
+    2: t('ourHelp'),
+    3: t('additionalInfo')
   }
 
   const stepsArray = Object.keys(steps)

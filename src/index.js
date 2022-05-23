@@ -2,11 +2,13 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { StateMachineProvider, createStore } from 'little-state-machine'
+import { I18nextProvider, useTranslation } from 'react-i18next'
 import { Step1 } from './steps/Step1'
 import { Step2 } from './steps/Step2'
 import { Step3 } from './steps/Step3'
 import './App.scss'
 import { Success } from './steps/Success'
+import i18n from './i18n'
 
 createStore({
   data: {}
@@ -27,6 +29,7 @@ export const getCurrentDate = () => {
 }
 
 function App() {
+  const { i18n } = useTranslation()
   const [userIp, setUserIp] = useState('')
   const [step, setStep] = useState(1)
   useEffect(() => {
@@ -34,6 +37,11 @@ function App() {
       .then(res => res.json())
       .then(res => setUserIp(res?.IPv4))
   }, [])
+
+  useEffect(() => {
+    const lang = window.location.pathname.split('/')[1]
+    i18n.changeLanguage(lang)
+  }, [i18n])
 
   const handleNext = () => {
     setStep(step + 1)
@@ -84,4 +92,12 @@ function App() {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+  <I18nextProvider i18n={i18n}>
+    {' '}
+    <React.Suspense fallback="Loading">
+      <App />
+    </React.Suspense>
+  </I18nextProvider>,
+  document.getElementById('root')
+)

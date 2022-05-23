@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import Lottie from 'react-lottie'
 import animationData from '../lotties/success.json'
 import { H2 } from '../components/headings/H2'
@@ -13,6 +14,7 @@ const defaultOptions = {
 }
 
 export const Success = ({ onNext }) => {
+  const { t } = useTranslation()
   const handleClick = () => {
     onNext()
   }
@@ -24,14 +26,14 @@ export const Success = ({ onNext }) => {
         style={{ fontSize: '5rem', padding: '0 5px' }}
         className="custom-h1-sm"
       >
-        Úspešne odoslané!
+        {t('sentSuccess')}!
       </h1>
-      <H2 text="Už len moment a náš špecialista sa vám venuje. " />
+      <H2 text={t('willGetToYou')} />
       <button
         onClick={handleClick}
         className="custom-button success-btn secondary"
       >
-        Späť na formulár
+        {t('backToForm')}
       </button>
     </div>
   )

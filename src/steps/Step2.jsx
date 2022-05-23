@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { ProgressSteps } from '../progress-steps'
 import { useStateMachine } from 'little-state-machine'
 import updateAction from '../updateAction'
 
 export const Step2 = ({ onBack, onNext }) => {
+  const { t } = useTranslation()
   const { register, handleSubmit, watch, setValue } = useForm()
   const { actions, state } = useStateMachine({ updateAction })
 
@@ -20,14 +22,14 @@ export const Step2 = ({ onBack, onNext }) => {
   }
 
   const servicesArray = [
-    'Výkonnostný marketing',
-    'WEB & UX',
-    'Online Export',
-    'Marketing v zahraničí',
-    'SEO',
-    'Magic Hiring',
-    'Budovanie značky',
-    'Provízna spolupráca'
+    t('marketingPerformance'),
+    t('webUx'),
+    t('onlineExport'),
+    t('marketingAbroad'),
+    t('seo'),
+    t('magicHiring'),
+    t('brandBuilding'),
+    t('commissionCoop')
   ]
 
   const servicesList = servicesArray.map((service, i) => (
@@ -53,9 +55,7 @@ export const Step2 = ({ onBack, onNext }) => {
       <ProgressSteps stepNum={2} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset className="custom-fieldset">
-          <legend className="custom-legend">
-            Vyberte, o čo máte záujem a nebojte sa označiť viac možností
-          </legend>
+          <legend className="custom-legend">{t('chooseServices')}</legend>
           <div className="services-list">{servicesList}</div>
         </fieldset>
         <div className="button-container">
@@ -64,10 +64,10 @@ export const Step2 = ({ onBack, onNext }) => {
             onClick={() => onBack()}
             className="custom-button secondary"
           >
-            Späť
+            {t('back')}
           </button>
           <button type="submit" className="custom-button primary">
-            Ďalej
+            {t('next')}
           </button>
         </div>
       </form>
