@@ -38,7 +38,7 @@ export const Step3 = ({ onBack, onNext }) => {
   const onSubmit = data => {
     emailjs
       .sendForm(
-        'service_9vxcxnt',
+        'service_3afv6sn',
         'template_adwoj6s',
         formRef.current,
         'user_szolbZ1s6HtszgBTaUZYs'
@@ -52,6 +52,21 @@ export const Step3 = ({ onBack, onNext }) => {
         }
       )
       .finally(() => {
+        emailjs
+          .send(
+            'service_3afv6sn',
+            'template_i4din87',
+            { from_name: 'Dexfinity', reply_to: 'info@dexfinity.com' },
+            'user_szolbZ1s6HtszgBTaUZYs'
+          )
+          .then(
+            r => {
+              console.log('SUCCESS!', r.status, r.text)
+            },
+            err => {
+              console.log('FAILED...', err)
+            }
+          )
         actions.updateAction(data)
         onNext(state)
         actions.clearAction()
