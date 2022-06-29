@@ -4,7 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import Backend from 'i18next-http-backend'
 import * as en from './locales/en.json'
 import * as sk from './locales/sk.json'
-import * as cs from './locales/cs.json'
+import * as cz from './locales/cz.json'
 
 i18n
   .use(initReactI18next)
@@ -15,7 +15,7 @@ i18n
     resources: {
       en: en.default,
       sk: sk.default,
-      cs: cs.default
+      cz: cz.default
     },
     lng: 'sk',
     fallbackLng: 'sk',
